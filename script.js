@@ -1,16 +1,18 @@
 const list = document.querySelector("ul");
-let myLi = " ";
+const buttonShowAll = document.querySelector(".showAll");
+let myLi = "";
 
-menuOptions.forEach((product) => {
-  myLi += `
-
-    <li class="">
-      <img src="${product.src}" alt="${product.name}" />
+function showAll() {
+  myLi = "";
+  menuOptions.forEach((product) => {
+    myLi += `<li class="">
+        <img src="${product.src}" alt="${product.name}" />
         <p>${product.name}</p>
-        <p class="item-price">${product.price}</p>
+        <p class="item-price">R$ ${product.price},00</p>
       </li>
+  `;
+  });
+  list.innerHTML = myLi;
+}
 
-      `;
-});
-list.innerHTML = myLi;
-console.log(myLi);
+buttonShowAll.addEventListener("click", showAll);
