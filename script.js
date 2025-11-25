@@ -1,6 +1,7 @@
 const list = document.querySelector("ul");
 const buttonShowAll = document.querySelector(".showAll");
 const buttonMapAll = document.querySelector(".map-all");
+const buttonSomeAll = document.querySelector(".some-all");
 let myLi = "";
 
 function showAll(productsArray) {
@@ -24,5 +25,16 @@ function mapAll() {
   showAll(newPrice);
 }
 
+function SomeALlitens() {
+  const totalValue = menuOptions.reduce((acc, curr) => acc + curr.price, 0);
+
+  list.innerHTML = `
+<li> 
+<p> O valor total dos intens é R$ ${totalValue}</p> 
+</li> 
+`;
+}
+
 buttonShowAll.addEventListener("click", () => showAll(menuOptions));
 buttonMapAll.addEventListener("click", mapAll);
+buttonSomeAll.addEventListener("click", SomeALlitens);
