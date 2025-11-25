@@ -2,6 +2,16 @@ const list = document.querySelector("ul");
 const buttonShowAll = document.querySelector(".showAll");
 const buttonMapAll = document.querySelector(".map-all");
 const buttonSomeAll = document.querySelector(".some-all");
+const buttonFilterVegan = document.querySelector(".filter-vegan");
+
+function fomatCurrency(value) {
+  const newVAlue = value.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+  return newVAlue;
+}
+
 let myLi = "";
 
 function showAll(productsArray) {
@@ -10,7 +20,7 @@ function showAll(productsArray) {
     myLi += `<li class="">
         <img src="${product.src}" alt="${product.name}" />
         <p>${product.name}</p>
-        <p class="item-price">R$ ${product.price}</p>
+        <p class="item-price">R$ ${fomatCurrency(product.price)}</p>
       </li>
   `;
   });
@@ -30,11 +40,17 @@ function SomeALlitens() {
 
   list.innerHTML = `
 <li> 
-<p> O valor total dos intens é R$ ${totalValue}</p> 
+<p> O valor total dos intens é R$ ${fomatCurrency(totalValue)}</p> 
 </li> 
 `;
+}
+
+function filterVegan() {
+  const filterVegan = menuOptions.filter((product) => product.vegan === true);
+  showAll(filterVegan);
 }
 
 buttonShowAll.addEventListener("click", () => showAll(menuOptions));
 buttonMapAll.addEventListener("click", mapAll);
 buttonSomeAll.addEventListener("click", SomeALlitens);
+buttonFilterVegan.addEventListener("click", filterVegan);
